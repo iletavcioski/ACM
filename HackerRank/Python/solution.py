@@ -1,21 +1,11 @@
+class BlackBenduday:
+  def savings(self, prices, discounts, k):
+        arr = []
+        for a, b in zip(prices, discounts):
+            arr.append(a * b / 100)
+        arr.sort(reverse=True)
+        return '%.2f' % sum(arr[:k])
 if __name__ == '__main__':
-    N = int(input())
-    arr = []
-    for i in range(N):
-        ar = []
-        ar.append(input())
-        if ar[0] == "insert":
-            idx = int(input())
-            num = int(input())
-            arr.insert(idx, num)
-        elif ar[0] == "print":
-            print(arr)
-        elif ar[0] == "append":
-            num = int(input())
-            arr.append(input())
-        elif ar[0] == "sort":
-            arr.sort()
-        elif ar[0] == "reverse":
-            arr.reverse()
-        elif ar[0] == "pop":
-            arr.pop()
+    b = BlackBenduday()
+    print(b.savings([134,777,207,562,22,966,447,126,73,203], [49,57,95,83,20,43,48,98,16,26], 10))
+   
