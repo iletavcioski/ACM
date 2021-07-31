@@ -2,7 +2,7 @@
 
 #define mp make_pair
 #define f first
-#define s second
+//#define s second
 #define pb push_back
 
 typedef long long ll;
@@ -17,11 +17,13 @@ int main() {
     cin >> n >> m;
     string s;
     cin >> s;
-    int dp[n + 1][3];
-    dp[0][0] = (s[0] == 'a');
-    dp[0][1] = (s[0] == 'b');
-    dp[0][2] = (s[0] == 'c');
-    for (int i = 3; i < n; i += 3) {
+    int dp[n + 3][3];
+    for (int j = 0; j < 3; j++) {
+        dp[j][0] = (s[j] == 'a');
+        dp[j][1] = (s[j] == 'b');
+        dp[j][2] = (s[j] == 'c');
+    }
+    for (int i = 3; i < n; i++) {
         dp[i][0] = dp[i - 3][0] + (s[i] == 'a');
         dp[i][1] = dp[i - 3][1] + (s[i] == 'b');
         dp[i][2] = dp[i - 3][2] + (s[i] == 'c');
@@ -41,55 +43,62 @@ int main() {
         int len = b - a + 1;
         if (len % 3 == 0) {
             for (int j = 0; j < 3; j++) {
-                mat[0][j] = dp[b - 2][j];
-                if (a - 3 >= 0) 
+                if (b - 2 >= 0)
+                    mat[0][j] = dp[b - 2][j];
+                if (a - 3 >= 0)
                     mat[0][j] -= dp[a - 3][j];
             }
 
             for (int j = 0; j < 3; j++) {
-                mat[1][j] = dp[b - 1][j];
-                if (a - 2 >= 0) 
+                if (b - 1 >= 0)
+                    mat[1][j] = dp[b - 1][j];
+                if (a - 2 >= 0)
                     mat[1][j] -= dp[a - 2][j];
             }
             for (int j = 0; j < 3; j++) {
                 mat[2][j] = dp[b][j];
-                if (a - 1 >= 0) 
+                if (a - 1 >= 0)
                     mat[2][j] -= dp[a - 1][j];
             }
         } else if (len % 3 == 1) {
             for (int j = 0; j < 3; j++) {
                 mat[0][j] = dp[b][j];
-                if (a - 3 >= 0) 
+                if (a - 3 >= 0)
                     mat[0][j] -= dp[a - 3][j];
             }
 
             for (int j = 0; j < 3; j++) {
-                mat[1][j] = dp[b - 2][j];
-                if (a - 2 >= 0) 
+                if (b - 2 >= 0)
+                    mat[1][j] = dp[b - 2][j];
+                if (a - 2 >= 0)
                     mat[1][j] -= dp[a - 2][j];
             }
             for (int j = 0; j < 3; j++) {
-                mat[2][j] = dp[b - 1][j];
-                if (a - 1 >= 0) 
+                if (b - 1 >= 0)
+                    mat[2][j] = dp[b - 1][j];
+                if (a - 1 >= 0)
                     mat[2][j] -= dp[a - 1][j];
             }
-        } else if (len % 2 == 2) {
+        } else if (len % 3 == 2) {
             for (int j = 0; j < 3; j++) {
-                mat[0][j] = dp[b - 1][j];
-                if (a - 3 >= 0) 
+                if (b - 1 >= 0)
+                    mat[0][j] = dp[b - 1][j];
+                if (a - 3 >= 0)
                     mat[0][j] -= dp[a - 3][j];
             }
 
             for (int j = 0; j < 3; j++) {
-                mat[1][j] = dp[b][j];
-                if (a - 2 >= 0) 
+                    mat[1][j] = dp[b][j];
+                if (a - 2 >= 0)
                     mat[1][j] -= dp[a - 2][j];
             }
             for (int j = 0; j < 3; j++) {
-                mat[2][j] = dp[b - 2][j];
-                if (a - 1 >= 0) 
+                if (b - 2 >= 0)
+                    mat[2][j] = dp[b - 2][j];
+                if (a - 1 >= 0)
                     mat[2][j] -= dp[a - 1][j];
             }
+
         }
 
         int maxi = 0;
@@ -99,7 +108,7 @@ int main() {
         ve.pb(2);
         do{
             int brojac = 0;
-            for (int j = 0; j < 3; j++) {
+            for (int j = 0; j < min(len, 3); j++) {
                 brojac += mat[j][ve[j]];
             }
             maxi = max(maxi, brojac);
@@ -107,3 +116,8 @@ int main() {
         cout << len - maxi << endl;
     }
 }
+
+/*
+ 10 1
+cbcccaacaa
+ */
