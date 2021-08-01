@@ -95,7 +95,7 @@ int main() {
 
     int i = 0, j = 0;
     int mini = 1e9;
-
+    
     while (i < n && j < n) {
         I = 0;
         J = m - 1;
