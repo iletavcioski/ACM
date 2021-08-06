@@ -81,7 +81,7 @@ int qu1(int l, int r, int p) {
     return (qu1(l, (l + r) / 2, 2 * p) + qu1((l + r) / 2 + 1, r, 2 * p + 1));
 }
 
-int qu2(int l, int r, int p) {
+ll qu2(int l, int r, int p) {
     if (laz2[p] != 0) {
         st2[p] += laz2[p] * (ll)(r - l + 1);
         if (l != r) {
