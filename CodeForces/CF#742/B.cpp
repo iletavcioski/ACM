@@ -17,8 +17,12 @@ int main() {
     while (t--) {
         int n;
         cin >> n;
-        string ss;
-        cin >> ss;
+        string ss = "";
+        for (int i = 0; i < n; i++) {
+            char a;
+            cin >> a;
+            ss += a;
+        }
         bool cc = false;
         for (int i = 0; i < ss.size(); i++) {
             if (ss[i] != '2' && ss[i] != '3' && ss[i] != '5' && ss[i] != '7') {
@@ -34,13 +38,14 @@ int main() {
             for (int j = i + 1; j < ss.size(); j++) {
                 int br = (ss[i] - '0') * 10 + (ss[j] - '0');
                 if (br != 23 && br != 73 && br != 53 && br != 37) {
-                    //cout << "out" << endl;
+                   // cout << "out" << endl;
                     cout << 2 << endl;
                     cout << ss[i] << ss[j] << endl;
                     cc = true;
                     break;
                 }
             }
+            if (cc) break;
         }
        
 
